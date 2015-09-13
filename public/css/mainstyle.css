@@ -1,0 +1,50 @@
+body > .ui.container {
+	margin-top: 1em;
+}
+iframe {
+	border: none;
+	width: calc(100% + 2em);
+	margin: 1em -2em;
+	height: 600px;
+}
+iframe html {
+	overflow: hidden;
+}
+iframe body {
+	padding: 10px;
+}
+.masthead.segment {
+	min-height: 200px;
+	padding: 1em 0em;
+}	
+.masthead .logo.item img {
+	margin-right: 1em;
+}
+.masthead h1.ui.header {
+	margin-top: 20px;
+	margin-bottom: 40px;
+	font-size: 4em;
+	font-weight: normal;
+}
+.ui.container > h1 {
+	font-size: 3em;
+	text-align: center;
+	font-weight: normal;
+}
+.footer.segment {
+	padding: 2em 0em;
+}
+.ui.container {
+	padding: 10px;
+}
+.stream.segment {
+	min-height: 400px;
+}
+.ui.console {
+	background: #D8D8D8;
+}
+#console > li {
+	list-style-type: none;
+	font-size: 1em;
+	font-family: "Lucida Console", Monaco, monospace;
+}

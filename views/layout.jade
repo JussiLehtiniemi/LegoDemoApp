@@ -1,0 +1,41 @@
+doctype 1.1
+html
+	head
+		script(src='lib/jquery.min.js')
+		
+		link(rel='stylesheet' type='text/css' href='semantic/semantic.min.css')
+		script(src='semantic/semantic.min.js')
+		
+		
+		script
+			include js/maintabs.js
+			
+		script
+			include js/streamlistview.js
+		
+		title Lego Demo App
+	
+		link(rel='stylesheet' type='text/css' href='css/mainstyle.css')
+
+	body
+		#headerSegment(class='ui inverted vertical masthead center aligned segment')
+			div(class='ui container')
+				img(class='ui centered medium image' src='/img/logo_lego_mindstromsnxt1.png')
+				div(class='ui text container')
+					h1(class='ui inverted header') Lego Robot Project
+				
+		block content
+			h2(class='ui header') Some smaller header
+		
+		#footerSegment(class='ui inverted vertical footer segment')
+			div(class='ui container')
+				div(class='ui stackable inverted divided equal height stackable grid')
+					div(class='three wide column')
+						h4(class='ui inverted header') Team
+						div(class='ui inverted list')
+							| Jaakko
+							br() 
+							| Sachin
+							br()
+							| Jussi
+						

@@ -1,0 +1,21 @@
+{
+	"name": "stream2",
+	"streamToken": "sabqt8kaa8",
+	"type": "scatter",
+	"mode": "lines+markers",
+	"line": {
+		"color": "rgba(31, 119, 180, 0.31)"
+	},
+	"maxPoints": 200,
+	"fileName": "stream2_test",
+	"fileOpt": "overwrite",
+	"layout": {
+		"title": "Another stream for testing",
+		"xaxis": {
+			"title": "Time [s]"
+		},
+		"yaxis": {
+			"title": "Vout [mV]"
+		}
+	}
+}

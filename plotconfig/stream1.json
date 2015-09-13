@@ -1,0 +1,15 @@
+{
+	"name": "stream1",
+	"streamToken": "y39f57wfqj",
+	"type": "scatter",
+	"mode": "lines+markers",
+	"line": {
+		"color": "rgba(31, 119, 180, 0.31)"
+	},
+	"maxPoints": 200,
+	"fileName": "stream1_test",
+	"fileOpt": "overwrite",
+	"layout": {
+		"title": "Stream 1 test"
+	}
+}

@@ -1,0 +1,25 @@
+extends ./layout.jade
+
+block content
+	div(class='ui container')
+		div(class='ui top attached tabular menu')
+			a(class='active item' data-tab='selector')
+				i(class='browser icon')
+				| Control
+			a(class='item' data-tab='stream')
+				i(class='line chart icon')
+				| Stream
+			a(class='item' data-tab='static')
+				i(class='line chart icon')
+				| Graphs
+			a(class='item' data-tab='console')
+				i(class='align left icon')
+				| Console
+		div(class='ui bottom attached active tab segment' data-tab='selector')
+			include streamSelectTab.jade
+		div(class='ui bottom attached tab segment' data-tab='stream')
+			include streamTab.jade
+		div(class='ui bottom attached tab segment' data-tab='static')
+			include staticTab.jade
+		div(class='ui bottom attached tab segment' data-tab='console')
+			include consoleTab.jade
