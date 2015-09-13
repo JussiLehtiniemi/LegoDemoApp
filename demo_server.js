@@ -12,12 +12,18 @@ var express = require('express')
   , logger = require('morgan')
   , logframe = require('./routes/logframe')
   , streams = require('./routes/streams')
-  , path = require('path');
+  , path = require('path')
+  , iotConfig = require('./iotconfig.json');
 
 // MongoDB
-var mongo = require('mongodb');
-var monk = require('monk');
-var db = monk('localhost:27017/legodemo');
+//var mongo = require('mongodb');
+//var monk = require('monk');
+//var db = monk('localhost:27017/legodemo');
+
+// MQTT client
+var mqttClient = require('ibmiotf').IotfApplication;
+var mqttAppClient = new mqttClient(iotConfig);
+
 
 var app = express();
 var appEnv = cfenv.getAppEnv();
@@ -70,7 +76,16 @@ catch(err) {
 	console.log("Error while initializing Plotly:\n" + err.stack);
 }
 
-io.on('connection', function(socket) {
+// Connect MQTT client
+mqttAppClient.connect();
+
+mqttAppClient.on('connect', function () {	// Subscription...
+	mqttAppClient.subscribeToDeviceEvents();
+});
+
+// Socket.IO client
+
+io.on('connection', function (socket) {
 
 	// Get streams...
 	var streams = pClient.getStreams();
@@ -78,19 +93,35 @@ io.on('connection', function(socket) {
 	console.log('These stream events are known: ' + pClient.getEvents().toString());
 
 	// Generate an 'event' for each Plotly stream, identified by the 'name' parameter defined in the config
-	streams.forEach(function(stream) {
+	streams.forEach(function (stream) {
 		socket.on(stream.name, function(data) {
 			stream.send(data);
 		});
 	});
 
 	// Broadcast console message
-	socket.on('console', function(msg) {
+	socket.on('console', function (msg) {
 		console.log(msg);
 		io.emit('console message', msg);
 	});
 });
 
-http.listen(app.get('port'), function(){
+// MQTT Event handlers...
+mqttAppClient.on('deviceEvent', function (deviceType, deviceId, eventType, format, payload) {
+
+	var streams = pClient.getStreams();
+
+	streams.forEach(function (stream) {
+		if(eventType === stream.name) {
+			stream.send(payload);
+		}
+	});
+
+	if(eventType === 'console') {
+		io.emit('console message', payload)
+	}
+});
+
+http.listen(app.get('port'), function (){
   console.log('Express server listening on port ' + app.get('port'));
 });
