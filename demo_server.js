@@ -112,7 +112,7 @@ mqttAppClient.on('deviceEvent', function (deviceType, deviceId, eventType, forma
 	var streams = pClient.getStreams();
 
 	streams.forEach(function (stream) {
-		if(eventType === stream.name) {
+		if(stream.name === 'stream1') {
 			stream.send(payload);
 		}
 	});
